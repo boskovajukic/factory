@@ -11,6 +11,10 @@ public class Car {
     private int maxFuel;
     private int currentFuel;
     private int consumption;
+    private double mileage;
+    private int passengers;
+    private int seats;
+        
     
     
     
@@ -21,9 +25,12 @@ public class Car {
         this.maxFuel = 0;
         this.currentFuel = 0;
         this.consumption = 0;
+        this.mileage = 0;
+        this.passengers = 1;
+        this.seats = 5;
     }
     
-    public  Car(String customModel, int customBuildYear, int customMaxSpeed, String customColor, int customMaxFuel, int customCurrentFuel, int customconsumption) {
+    public  Car(String customModel, int customBuildYear, int customMaxSpeed, String customColor, int customMaxFuel, int customCurrentFuel, int customconsumption, double customMileage, int customPassengers, int customSeats) {
         this.model = customModel;
         this.buildYear = customBuildYear;
         this.maxSpeed = customMaxSpeed;
@@ -31,8 +38,30 @@ public class Car {
         this.maxFuel = customMaxFuel;
         this.currentFuel = customCurrentFuel;
         this.consumption = customconsumption;
+        this.mileage = customMileage;
+        this.passengers = customPassengers;
+        this.seats = customSeats;
+        
+        
+        
     }
     
+    public int getSeats() {
+        return this.seats;
+    }
+    
+    public void setSeats(int customSeats) {
+                this.seats = customSeats;
+    }
+    
+    public int getPassengers() {
+        return this.passengers;
+    }
+    
+    public void setPassengers(int customPassengers) {
+                this.passengers = customPassengers;
+    }
+                
     public String getVehicleType() {
         return this.vehicleType;
     }
@@ -93,6 +122,14 @@ public class Car {
                 this.consumption = customconsumption;
     }
     
+    public double getMileage() {
+        return this.mileage;
+    }
+    
+    public void setMileage(double customMileage) {
+                this.mileage = customMileage;
+    }
+    
     public void showData() {
         System.out.println("Model: " + this.getModel());
         System.out.println("Godina proizvodnje: " + this.getBuildYear());
@@ -101,17 +138,56 @@ public class Car {
         System.out.println("Stanje rezervoara: " + this.getCurrentFuel());
         System.out.println("Kapacitet rezervoara je: " + this.getMaxFuel());
         System.out.println("Maksimalna brzina: " + this.getMaxSpeed());
+        System.out.println("Kilometraza: " + this.getMileage());
         
     }
     
-    public void travel(int distanceTraveled) {
+    public void travel(int distance) {
+        if (this.getCurrentFuel() > (distance * this.getConsumption()) / 100) {
+        this.mileage = this.getMileage() + distance;
+        this.currentFuel = this.getCurrentFuel() - (distance * this.getConsumption()) / 100;
+        System.out.println("Uspesno ste sipali " + distance + " kilometara");
+        } else {
+            System.out.println("Nemate dovoljno goriva za put od: " + distance);
+            }
+        
+        
+    }
+    public void fuelUp(int refill) {
+        int emptySpace = this.getMaxFuel() - this.getCurrentFuel();
+        
+        if (refill < emptySpace) {
+            this.currentFuel = this.getCurrentFuel() + refill;
+            System.out.println("Uspesno ste sipali " + refill +  "Novo stanje je: " + this.getCurrentFuel());
+        } else {
+            
+            System.out.println("Rezervoar je pin. Sipali ste: " + emptySpace);
+        }
+        
+        
+        
+        }
+        
+        
+        }
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         // kolicina goriva da se smanji za onoliko koliko je potroseno
         // kilometraza treba da se uveca
         //kuci napravi jos jedan atribut za kilometrazu "mileage"
         //napravi get i set metode za mileage
         //prosiri jedan od konstruktora tako da moze da se koristi i setuje mileage
         //jos vezbe definisi jos jedan atribut za stanje motora da li je ukljucen ili nije
-        
-        
-    }
-}
+                
+    
+
